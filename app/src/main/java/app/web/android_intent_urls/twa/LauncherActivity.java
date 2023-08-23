@@ -48,7 +48,13 @@ public class LauncherActivity
         Log.d("Intent.ACTION_VIEW",Intent.ACTION_VIEW);
         if (intent != null && Intent.ACTION_VIEW.equals(intent.getAction())) {
             Log.d("INTENT DATA", String.valueOf(intent.getData()));
-            Log.d("INTENT EXTRAS", String.valueOf(intent.getData()));
+            Log.d("INTENT EXTRAS", String.valueOf(intent.getExtras()));
+            Bundle bundle = intent.getExtras();
+            for (String key : bundle.keySet()) {
+                Object value = bundle.get(key);
+                Log.d("INTENT BUNDLE LOOP", String.format("%s %s (%s)", key,
+                        value.toString(), value.getClass().getName()));
+            }
             Uri data = intent.getData();
             if (data != null) {
                 // Extract and handle the custom data from the intent
